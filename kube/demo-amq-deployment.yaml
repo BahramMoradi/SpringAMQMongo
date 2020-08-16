@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-amq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-amq
+  template:
+    metadata:
+      labels:
+        app: demo-amq
+    spec:
+      containers:
+        - name: demo-amq
+          image: rmohr/activemq:5.15.9-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 61616
+          resources:
+            limits:
+              memory: 512Mi

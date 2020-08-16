@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: demo-app
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              value: mongodb://demo-mongo:27017/demo-db
+            - name: ACTIVEMQ_BROKER_URL
+              value: "tcp://demo-amq:61616"
+            - name: STORE_ENABLED
+              value: "false"
+            - name: WORKER_ENABLED
+              value: "true"

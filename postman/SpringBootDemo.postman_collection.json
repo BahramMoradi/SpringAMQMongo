@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "31bd37b2-e65d-4bcd-a40c-21422cf16e19",
+		"name": "SpringBootDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/api/documents",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\":\"uuid-6699\",\n   \"status\":\"mongo status is ok\",\n   \"key\":\"amq\",\n   \"value\" : \"done\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/api/documents",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document with id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/api/documents/uuid-6699",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"documents",
+						"uuid-6699"
+					]
+				},
+				"description": "Get a document with id"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a document",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"id\":\"uuid-6699\",\n    \"key\":\"hello word from update\",\n    \"status\":\"OK, update\",\n    \"value\":\"put update ....\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/api/documents",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"documents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send a Message to AmqInboundController",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"id\": \"uuid-6699\",\n        \"status\": \"done\",\n        \"key\": \"amq \",\n        \"value\": \"amq-demo\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}/sendToInboundQueue",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"sendToInboundQueue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}/api/documents/uuid-6699",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"documents",
+						"uuid-6699"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

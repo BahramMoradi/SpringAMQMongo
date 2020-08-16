@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'dk.bam'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    //implementation 'org.apache.activemq:activemq-broker' // embedded broker
+    //implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.google.code.gson:gson'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.12'
+    implementation 'org.springframework:spring-jms:5.2.1.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    //implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.0'
+    implementation 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        exclude group: "com.vaadin.external.google", module: "android-json"
+    }
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+}
+
+test {
+    useJUnitPlatform()
+}

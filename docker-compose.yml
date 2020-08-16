@@ -1,0 +1,30 @@
+version: '3'
+services:
+  demo-mongo:
+    image: mongo:latest
+    container_name: 'demo-mongo'
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: demo-db
+    ports:
+      - 27017:27017
+  demo-amq:
+    container_name: demo-amq
+    image: rmohr/activemq:5.15.9-alpine
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+  demo-app:
+    container_name: demo-app
+    build:
+      context: .
+    environment:
+      ACTIVEMQ_BROKER_URL: tcp://demo-amq:61616
+      MONGO_URL: mongodb://demo-mongo:27017/demo-db
+    depends_on:
+      - demo-amq
+    ports:
+      - "8080:8080"
+    links:
+      - demo-mongo
+      - demo-amq
